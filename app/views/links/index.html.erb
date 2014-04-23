@@ -1,0 +1,23 @@
+<h5 class="hide-for-small alert">All sweet little shorties, created by our awesome users..</h5>
+
+<table>
+  <tr>
+    <th>Shorty</th>
+    <th width="200">Destination</th>
+    <th>Creator</th>
+    <th>Location</th>
+    <th>Visits</th>
+  </tr>
+
+<% @links.each do |record| %>
+<% link = record[:link] %>
+ 	<tr>
+    <td><a href="<%= root_url + 'links/' + link.short_url %>" target=_blank><%= link.short_url %></a></td>
+    <td><a href="<%= link.long_url %>" target=_blank><%= link.long_url %></a></td>
+    <td><%= link.creator %></td>
+    <td><%= link.location %></td>
+    <td><a href="<%= root_url + 'links/' + link.short_url + '/visitors' %>" target=_blank><%= record[:visitors].length %></a></td>
+	</tr>
+<% end %>
+
+</table>

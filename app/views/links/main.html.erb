@@ -1,0 +1,45 @@
+<div class="row">
+    <% if flash[:notice] %>
+       <div data-alert class="alert-box success"><%= flash[:notice] %>
+          <a href="#" class="close">&times;</a>
+       </div>
+     <% elsif flash[:error] %>
+       <div data-alert class="alert-box alert"><%= flash[:error] %>
+          <a href="#" class="close">&times;</a>
+       </div>
+    <% end %>
+
+    <div class="alert" id="error-msg"></div>
+</div>
+
+<div class="row">
+<%= form_tag("/links", method: "post") do %>
+  	<div class="row collapse">
+		<div class="large-9 columns">
+			<input type="text" name="long_url" id="long_url" placeholder="Enter URL to Shortify..." value="<%= cookies[:long_url] || '' %>" />
+		</div>
+		<div class="large-1 columns">
+  			<input type="submit" class="button postfix" value="Shortify" onclick="return before_submit()"/>
+		</div>
+    <div class="large-2 columns">
+        <input type="button" class="button postfix alert" value="See all Shorties " onclick="redirect()"/>
+    </div>
+  	</div>
+
+  	<fieldset>
+    	<legend>Optional</legend>
+  	<div class="row">
+    	<div class="large-6 columns">
+          	<input type="text" name="creator" placeholder="Let the world know, who the mighty created this Shorty..." value="<%= cookies[:creator] || ''%>" />
+        </div>
+    	<div class="large-6 columns">
+          	<input type="text" name="location" id="location" placeholder="Also let them know where you Reign..." value="<%= cookies[:location] || '' %>" autocomplete="off"/>
+        </div> 
+    </div>
+    <div class="map_canvas row"></div>     
+    
+</fieldset>
+<% end %>
+</div>
+
+  
